@@ -1,0 +1,12 @@
+#!/bin/sh
+outpath=`pwd`/out/target/product/wingray
+adbpath=$HOME/Applications/SDK/platform-tools/
+
+sudo $adbpath/adb kill-server
+sudo $adbpath/adb reboot bootloader
+sudo $adbpath/fastboot erase cache
+sudo $adbpath/fastboot erase userdata
+sudo $adbpath/fastboot flash system $outpath/system.img
+sudo $adbpath/fastboot flash boot $outpath/boot.img
+sudo $adbpath/fastboot reboot
+
